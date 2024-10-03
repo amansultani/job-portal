@@ -9,8 +9,8 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <div class="text-6xl"> this should be big text </div>
+<body class="mx-auto mt-10 max-w-2xl bg-slate-200 text-slate-700">
+    {{ $slot }}
 </body>
 
 </html>
