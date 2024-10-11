@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Auth\Authenticatable;
 
 class Job extends Model
 {
@@ -19,6 +21,11 @@ class Job extends Model
     public function employer(): BelongsTo
     {
         return $this->belongsTo(Employer::class);
+    }
+
+    public function jobApplications(): HasMany
+    {
+        return $this->hasMany(JobApplication::class);
     }
 
     public function scopeFilter(Builder|QueryBuilder $query, array $filters): Builder|QueryBuilder
@@ -41,4 +48,10 @@ class Job extends Model
             $query->where('category', $category);
         });
     } 
+
+    public function hasUserApplied(): bool
+    {
+        return $this->jobApplications()->where('user_id', auth()->id())->exists();
+    }
+
 }
