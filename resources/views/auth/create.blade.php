@@ -37,4 +37,9 @@
         <x-button class="w-full bg-green-50">Login</x-button>
       </form>
     </x-card>
+    <x-card class="mt-5 py-8 px-16">
+      <h4 class="mb-4">You can login using the following credentials</h4>
+     <p> <b>E-mail: </b> test@example.com</p>
+     <p> <b>Password: </b> password</p>
+    </x-card>
   </x-layout>
